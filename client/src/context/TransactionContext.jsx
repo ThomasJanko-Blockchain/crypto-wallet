@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { ethers, parseEther } from 'ethers';
+import { ethers } from 'ethers';
 
 import { contractABI, contractAddress } from '../utils/constants';
 
@@ -12,11 +12,11 @@ const getEthereumContract = () => {
     const signer = provider.getSigner();
     const transactionContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-    console.log({
-        provider,
-        signer,
-        transactionContract
-    });
+    // console.log({
+    //     provider,
+    //     signer,
+    //     transactionContract
+    // });
 
     return transactionContract;
 }
