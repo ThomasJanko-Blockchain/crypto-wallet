@@ -24,7 +24,7 @@ const NavBar = () => {
             </div>
             <ul className='text-white md:flex hidden list-none flex-row justify-between items-center flex-initial'>
                 {['Market', 'Exchange', 'Tutorials', 'Wallets'].map((item, index) => (
-                    <div>
+                    <div key={index}>
                         <NavBarItem title={item} key={item + index} />
                     </div>
                 ))}
@@ -45,7 +45,7 @@ const NavBar = () => {
                                 <AiOutlineClose className='cursor-pointer' onClick={()=>setToggleMenu(false)} />
                             </li>
                                 {['Market', 'Exchange', 'Tutorials', 'Wallets'].map((item, index) => (
-                                <div>
+                                <div key={index}>
                                     <NavBarItem title={item} key={item + index} classProps='my-2 text-lg'/>
                                 </div>
                                 ))}
