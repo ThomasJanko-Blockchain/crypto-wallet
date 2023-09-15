@@ -38,8 +38,10 @@ export const TransactionProvider = ({ children }) => {
         try{
             if(!ethereum) {return alert('Make sure you have metamask!');}
             const transactionContract = getEthereumContract();
+            console.log('getEthereumContract...')
 
             const availableTransactions = await transactionContract.getAllTransactions();
+            console.log('availableTransactions', availableTransactions)
 
             const structuredTransactions = availableTransactions.map((transaction) => {
                 return {
@@ -89,9 +91,13 @@ export const TransactionProvider = ({ children }) => {
     const sendTransaction = async () => {
         
         try{
-            if(!ethereum) {return alert('Make sure you have metamask!');}
+            if(!ethereum) {
+                console.log('No metamask found')
+                return alert('Make sure you have metamask!');
+            }
             const { addressTo, amount, keyword, message } = formData;
              const transactionContract = getEthereumContract();
+             console.log('getEthereumContract...')
              console.log(transactionContract);
              const parsedAmount = ethers.utils.parseEther(amount); //converts amount to wei
 
@@ -106,6 +112,7 @@ export const TransactionProvider = ({ children }) => {
             });
 
            const transactionHash = await transactionContract.addToBlockchain(addressTo, parsedAmount, message, keyword);
+           console.log('transactionHash', transactionHash)
 
            setIsLoading(true);
            console.log(`Loading - ${transactionHash.hash}`)
